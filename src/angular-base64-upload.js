@@ -1,6 +1,9 @@
 angular.module('naif.base64', [])
 .directive('baseSixtyFourInput', ['$window', function ($window) {
   return {
+    scope: {
+      onChange: '&'
+    },
     restrict: 'A',
     require: 'ngModel',
     link: function (scope, elem, attrs, ngModel) {
@@ -24,6 +27,7 @@ angular.module('naif.base64', [])
         fileObject.filesize = file.size;
         fileObject.dataURI = _assemble_data_uri;
         reader.readAsArrayBuffer(file);
+        scope.onChange(fileObject);
       });
 
       //http://stackoverflow.com/questions/9267899/arraybuffer-to-base64-encoded-string
