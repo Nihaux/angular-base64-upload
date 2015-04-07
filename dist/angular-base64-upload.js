@@ -1,9 +1,12 @@
-/*! angular-base64-upload - v0.0.6 - 2015-03-28
+/*! angular-base64-upload - v0.0.6 - 2015-04-07
 * https://github.com/adonespitogo/angular-base64-upload
 * Copyright (c) Adones Pitogo <pitogo.adones@gmail.com> 2015; Licensed  */
 angular.module('naif.base64', [])
 .directive('baseSixtyFourInput', ['$window', function ($window) {
   return {
+    scope: {
+      onChange: '&'
+    },
     restrict: 'A',
     require: 'ngModel',
     link: function (scope, elem, attrs, ngModel) {
@@ -27,6 +30,7 @@ angular.module('naif.base64', [])
         fileObject.filesize = file.size;
         fileObject.dataURI = _assemble_data_uri;
         reader.readAsArrayBuffer(file);
+        scope.onChange()(fileObject);
       });
 
       //http://stackoverflow.com/questions/9267899/arraybuffer-to-base64-encoded-string

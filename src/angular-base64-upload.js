@@ -27,7 +27,7 @@ angular.module('naif.base64', [])
         fileObject.filesize = file.size;
         fileObject.dataURI = _assemble_data_uri;
         reader.readAsArrayBuffer(file);
-        scope.onChange(fileObject);
+        scope.onChange()(fileObject);
       });
 
       //http://stackoverflow.com/questions/9267899/arraybuffer-to-base64-encoded-string
